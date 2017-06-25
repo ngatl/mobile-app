@@ -1,5 +1,6 @@
 *.js
 *.css
+!app/
 *.map
 hooks
 node_modules

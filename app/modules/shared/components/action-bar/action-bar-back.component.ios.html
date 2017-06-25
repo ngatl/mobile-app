@@ -1,0 +1,6 @@
+<ActionBar [title]="title" class="action-bar">
+  <NavigationButton text="Back"></NavigationButton>
+  <ActionItem (tap)="rightButtonTap.emit(true)" ios.position="right" *ngIf="showMoreIcon">
+    <Button [text]="moreIcon | fonticon" class="fa action-item"></Button>
+  </ActionItem>
+</ActionBar>

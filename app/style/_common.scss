@@ -1,0 +1,13 @@
+    // customized variables
+    @import 'variables';
+    // theme standard rulesets
+    @import '~nativescript-theme-core/scss/index';
+
+    .fa {
+        font-family: 'FontAwesome', fontawesome-webfont;
+        font-size: 25;
+    }
+
+    .sidedrawer-list-item-text {
+      border-width: 0;
+    }

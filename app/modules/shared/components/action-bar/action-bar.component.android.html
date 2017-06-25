@@ -1,0 +1,7 @@
+<ActionBar class="action-bar">
+  <GridLayout rows="auto" columns="50,*,50" class="action-bar">
+    <Button [text]="'fa-bars' | fonticon" (tap)="toggleDrawer()" class="fa action-item" row="0" col="0"></Button>
+    <Label [text]="title" row="0" col="1" class="action-bar-title text-center"></Label>
+    <Button [text]="'fa-search' | fonticon" (tap)="openSearch()" class="fa action-item" row="0" col="2"></Button>
+  </GridLayout>
+</ActionBar>

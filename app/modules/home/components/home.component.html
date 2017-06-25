@@ -1,0 +1,26 @@
+<RadSideDrawer showOverNavigation="true" tkToggleNavButton [transition]="sideDrawerTransition" selectionBehavior="None" width="100%">
+  <StackLayout tkDrawerContent class="sidedrawer-left">
+    <FlexBoxLayout class="sidedrawer-header" paddingTop="20" height="168">
+        <!--<Image src="res://cityverve-drawer-logo" [nsRouterLink]="['/landing/home']" class="sidedrawer-header-image"></Image>-->
+        <Label text="ngATL" textWrap="true" class="sidedrawer-header-brand"></Label>
+    </FlexBoxLayout>
+    <ScrollView>
+      <StackLayout class="sidedrawer-content" row="0" col="0">
+        <!-- Home -->
+        <GridLayout columns="auto,*,auto" rows="60" [nsRouterLink]="['/landing/home']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" pageTransition="slideLeft">
+          <Label [text]="'fa-home' | fonticon" class="fa sidedrawer-list-item-icon" row="0" col="0"></Label>
+          <Label text="Home" class="sidedrawer-list-item-text" row="0" col="1"></Label>
+        </GridLayout>
+        <!-- AR Scan -->
+        <GridLayout columns="auto,*,auto" rows="60" [nsRouterLink]="['/landing/home']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" pageTransition="slideLeft">
+          <Label [text]="'fa-power-off' | fonticon" class="fa sidedrawer-list-item-icon" row="0" col="0"></Label>
+          <Label text="Sample" class="sidedrawer-list-item-text" row="0" col="1"></Label>
+        </GridLayout>
+
+      </StackLayout>
+    </ScrollView>
+  </StackLayout>
+  <StackLayout tkMainContent class="page-bg">
+    <router-outlet></router-outlet>
+  </StackLayout>
+</RadSideDrawer>

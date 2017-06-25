@@ -1,0 +1,8 @@
+<ActionBar class="action-bar" [title]="title">
+  <ActionItem (tap)="toggleDrawer()">
+    <Button [text]="'fa-bars' | fonticon" class="fa action-item"></Button>
+  </ActionItem>
+  <ActionItem (tap)="openSearch()" ios.position="right">
+    <Button [text]="'fa-search' | fonticon" nsRouterLink="/search" class="fa action-item"></Button>
+  </ActionItem>
+</ActionBar>

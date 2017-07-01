@@ -22,7 +22,7 @@ import { AppComponent } from './app.component';
         SharedModule,
         AppRoutingModule,
         TNSFontIconModule.forRoot({
-            'fa': 'font-awesome.css'
+            'fa': 'fonts/font-awesome.css'
         })
     ],
     declarations: [

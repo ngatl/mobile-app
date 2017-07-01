@@ -1,5 +1,15 @@
-<action-bar [title]="'Dashboard'"></action-bar>
-<StackLayout class="p-20">
-    <Label text="Test" textWrap="true"></Label>
-    
+<action-bar title="Dashboard" class="action-bar">
+     <ActionItem ios.position="left">
+        <Button [text]="'fa-bars' | fonticon" class="fa"></Button>
+    </ActionItem>
+</action-bar>
+<StackLayout class="card">
+    <Label text="This is a sample card. Do with it what you will!" textWrap="true"></Label>
+    <StackLayout class="hr-light"></StackLayout>
+    <GridLayout rows="auto" columns="*,*,*" class="social-controls">
+        <Button col="0" [text]="'fa-heart' | fonticon" class="fa red"></Button>
+        <Button col="1" [text]="'fa-star' | fonticon" class="fa gray"></Button>
+        <Button col="2" [text]="'fa-share-alt' | fonticon" class="fa gray"></Button>
+    </GridLayout>
+         
 </StackLayout>

@@ -3,11 +3,45 @@
     // theme standard rulesets
     @import '~nativescript-theme-core/scss/index';
 
+    /*pallette chosen from http://www.colourlovers.com/palette/541086/Loyal_Friends*/
+
+    Page {
+        background-color: #EDEDF4;
+    }
+    /*icons*/
     .fa {
         font-family: 'FontAwesome', fontawesome-webfont;
         font-size: 25;
     }
-
+    
+    //override for action-bar colored fonticons
+    .action-bar Button {
+        color: #0854C7;
+    }
+    .gray {
+        color: gray;
+    }
+    .red {
+        color: red;
+    }
     .sidedrawer-list-item-text {
       border-width: 0;
+    }
+    /*cards*/
+    .card{
+        margin-top: 10;
+        margin-left: 10;
+        margin-right: 10;
+        padding:10;
+        vertical-align:top;
+        background-color: white;
+        border-width: 1;
+        border-radius: 3;
+        border-color: white;
+    }
+    .hr-light {
+        margin-top: 10;
+    }
+    .social-controls{
+        padding-top: 10;
     }

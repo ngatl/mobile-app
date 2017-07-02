@@ -4,9 +4,6 @@ import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from '@angular/core
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NSModuleFactoryLoader } from 'nativescript-angular/router';
 
-// libs
-import { TNSFontIconModule, TNSFontIconService } from 'nativescript-ngx-fonticon';
-
 // app
 import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './modules/shared/shared.module';
@@ -21,9 +18,6 @@ import { AppComponent } from './app.component';
         CoreModule,
         SharedModule,
         AppRoutingModule,
-        TNSFontIconModule.forRoot({
-            'fa': 'fonts/font-awesome.css'
-        })
     ],
     declarations: [
         AppComponent,

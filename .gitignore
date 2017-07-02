@@ -1,7 +1,8 @@
 *.js
 *.css
-!app/
 *.map
+app/backend
 hooks
 node_modules
 platforms
+!tools/install.js

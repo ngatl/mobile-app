@@ -1,23 +1,39 @@
 // nativescript
-import { NativeScriptModule } from 'nativescript-angular/nativescript.module'; 
-import { NativeScriptFormsModule } from 'nativescript-angular/forms'; 
-import { NativeScriptHttpModule } from 'nativescript-angular/http'; 
-import { ModalDialogParams } from 'nativescript-angular/directives/dialogs'; 
+import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
+import { NativeScriptFormsModule } from 'nativescript-angular/forms';
+import { NativeScriptHttpModule } from 'nativescript-angular/http';
+import { ModalDialogParams } from 'nativescript-angular/directives/dialogs';
 
 // angular
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
+import { Http } from '@angular/http';
 
 // libs
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 // app
+import { SocketIOToken } from '../../backend/sockets/socket.browser';
+import { ApiModule } from '../api/api.module';
+import { UserEffects } from '../user/effects';
+import { UserModule } from '../user/user.module';
+import { UIEffects } from './effects';
 import { CORE_PROVIDERS } from './services';
-// import { AppReducer } from '../ngrx';
+import { AppReducer } from '../ngrx';
 
-// see below
-const defaultModalParams = new ModalDialogParams({}, null);
+// factories
+export function defaultModalParams() {
+  return new ModalDialogParams({}, null);
+}
+export function translateLoaderFactory(http: Http) {
+  return new TranslateHttpLoader(http, `/assets/i18n/`, '.json');
+}
+export function socketFactory() {
+  return {}; // TODO
+}
 
 const SINGLETON_PROVIDERS: any[] = [
   ...CORE_PROVIDERS,
@@ -27,13 +43,25 @@ const MODULES: any[] = [
   NativeScriptModule,
   NativeScriptFormsModule,
   NativeScriptHttpModule,
-  TNSFontIconModule
+  TNSFontIconModule,
 ];
 
 @NgModule({
   imports: [
     ...MODULES,
-    StoreModule.provideStore({})
+    TNSFontIconModule.forRoot({
+      'fa': 'fonts/font-awesome.css'
+    }),
+    TranslateModule.forRoot([{
+      provide: TranslateLoader,
+      deps: [Http],
+      useFactory: translateLoaderFactory
+    }]),
+    ApiModule,
+    UserModule,
+    StoreModule.provideStore(AppReducer),
+    EffectsModule.run(UserEffects),
+    EffectsModule.run(UIEffects),
   ],
   providers: [
     ...SINGLETON_PROVIDERS,
@@ -41,20 +69,18 @@ const MODULES: any[] = [
     // this service is provided to each component when opened in a modal
     // however because components will need to inject this for both conditions (route and modal)
     // this ensures Angular DI works fine everytime
-    { provide: ModalDialogParams, useValue: defaultModalParams }
+    { provide: ModalDialogParams, useFactory: defaultModalParams },
+    { 
+      provide: SocketIOToken,
+      useFactory: socketFactory
+    }
   ],
   exports: [
     ...MODULES
   ]
 })
 export class CoreModule {
-  static forRoot(configuredProviders: Array<any>): ModuleWithProviders {
-    return {
-      ngModule: CoreModule,
-      providers: [...SINGLETON_PROVIDERS, ...configuredProviders]
-    };
-  }
-  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
       throw new Error(
         'CoreModule is already loaded. Import it in the AppModule only');

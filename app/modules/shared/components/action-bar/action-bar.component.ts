@@ -24,6 +24,6 @@ export class ActionBarComponent {
   }
 
   public openSearch() {
-
+    this.router.navigate(['/search']);
   }
 }

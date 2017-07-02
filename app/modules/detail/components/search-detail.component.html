@@ -1,0 +1,6 @@
+<action-bar-back [title]="'Detail'" (rightButtonTap)="showOptions()"></action-bar-back>
+<StackLayout class="p-20">
+    <Label text="Selected:" class="h3"></Label>
+    
+    <Label [text]="detail?.title" class="h1"></Label>
+</StackLayout>

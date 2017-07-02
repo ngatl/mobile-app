@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 // app
-import { SystemUser } from '../../../backend/models';
-import { LoggerService } from '../../../backend/services/custom/logger.service';
+import { SystemUser } from '../../backend/models';
+import { LoggerService } from '../../backend/services/custom/logger.service';
 import { Cache, StorageKeys, TNSStorageService } from '../../core/services/tns-storage.service';
 import { WindowService } from '../../core/services/window.service';
 import { UserState } from '../states/user.state';

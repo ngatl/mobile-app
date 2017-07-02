@@ -10,7 +10,7 @@ import { RadSideDrawerComponent } from 'nativescript-telerik-ui/sidedrawer/angul
 import { PushTransition, DrawerTransitionBase, SlideInOnTopTransition } from 'nativescript-telerik-ui/sidedrawer';
 
 // app
-import { DrawerService } from '../../core/services/drawer.service';
+import { DrawerService } from '../../../core/services/drawer.service';
 
 @Component({
   moduleId: module.id,

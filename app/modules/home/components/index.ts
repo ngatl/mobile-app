@@ -1,11 +1,13 @@
-import { DashboardComponent } from './dashboard.component';
-import { HomeComponent } from './home.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
+import { SampleComponent } from './sample/sample.component';
 
 export const HOME_COMPONENTS: any[] = [
   DashboardComponent,
-  HomeComponent
+  HomeComponent,
+  SampleComponent,
 ];
 
-export * from './dashboard.component';
-export * from './home.component';
+export * from './dashboard/dashboard.component';
+export * from './home/home.component';
+export * from './sample/sample.component';

@@ -1,0 +1,9 @@
+<ActionBar class="action-bar">
+  <NavigationButton visibility="collapsed"></NavigationButton>
+  <GridLayout rows="auto" columns="50,*,50">
+    <Button [text]="backIcon | fonticon" (tap)="back()" class="fa btn-transparent" row="0" col="0" width="50"></Button>
+    <SearchBar #search hint="Search" (clear)="onClear()" (submit)="onSubmit()" [(ngModel)]="searchInput" class="search-bar" row="0"
+      col="1"></SearchBar>
+    <Button [text]="moreIcon | fonticon" (tap)="more()" class="fa btn-transparent" row="0" col="2" width="50"></Button>
+  </GridLayout>
+</ActionBar>

@@ -1,0 +1,10 @@
+<search-action-bar></search-action-bar>
+<StackLayout class="page">
+    <ListView [items]="(searchState$ | async)?.results" class="list-group">
+      <ng-template let-item="item" let-odd="odd" let-even="even">
+        <StackLayout [nsRouterLink]="['/detail/search', item.title]">
+          <Label [text]="item.title" class="list-group-item"></Label>
+        </StackLayout>
+      </ng-template>
+    </ListView>
+</StackLayout>

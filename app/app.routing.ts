@@ -11,7 +11,16 @@ const routes: Routes = [
     {
         path: 'landing',
         loadChildren: './modules/home/home.module#HomeModule'
-    }
+    },
+    // push/pop navigation pages
+    {
+        path: 'search',
+        loadChildren: './modules/search/search.module#SearchModule'
+    },
+    {
+        path: 'detail',
+        loadChildren: './modules/detail/detail.module#DetailModule',
+    },
 ];
 
 @NgModule({

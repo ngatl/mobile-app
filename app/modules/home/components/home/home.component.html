@@ -7,12 +7,12 @@
     <ScrollView>
       <StackLayout class="sidedrawer-content" row="0" col="0">
         <!-- Home -->
-        <GridLayout columns="auto,*,auto" rows="60" [nsRouterLink]="['/landing/home']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" pageTransition="slideLeft">
+        <GridLayout columns="auto,*,auto" rows="60" [nsRouterLink]="['/landing/home']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" pageTransition="slideLeft" class="sidedrawer-item">
           <Label [text]="'fa-home' | fonticon" class="fa sidedrawer-list-item-icon" row="0" col="0"></Label>
           <Label text="Home" class="sidedrawer-list-item-text" row="0" col="1"></Label>
         </GridLayout>
         <!-- AR Scan -->
-        <GridLayout columns="auto,*,auto" rows="60" [nsRouterLink]="['/landing/home']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" pageTransition="slideLeft">
+        <GridLayout columns="auto,*,auto" rows="60" [nsRouterLink]="['/landing/home', 'sample']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}" pageTransition="slideLeft" class="sidedrawer-item">
           <Label [text]="'fa-power-off' | fonticon" class="fa sidedrawer-list-item-icon" row="0" col="0"></Label>
           <Label text="Sample" class="sidedrawer-list-item-text" row="0" col="1"></Label>
         </GridLayout>

@@ -7,6 +7,8 @@ import { type } from '../helpers/type';
 // various app module state
 import { uiReducer } from '../core/reducers';
 import { UIState } from '../core/states';
+import { searchReducer } from '../search/reducers';
+import { SearchState } from '../search/states';
 import { userReducer } from '../user/reducers';
 import { UserState } from '../user/states';
 
@@ -31,11 +33,13 @@ export namespace AppActions {
 
 // overall shape of app state
 export interface IAppState {
+    search: SearchState.IState;
     user: UserState.IState;
     ui: UIState.IState;
 }
 
 const reducers = {
+    search:     searchReducer,
     user:       userReducer,
     ui:         uiReducer,
 };

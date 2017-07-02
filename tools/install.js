@@ -10,8 +10,9 @@ var cp = require('child_process');
 var path = require('path');
 
 // Must set this before running 'npm i'
-var backendRepoPath = '';// exmaple: '/Users/nathan/Documents/github/ngatl/colmena/packages/admin-lb-sdk/src';
-var nativescriptAppPath = '../app/backend';
+var backendRepoPath = '';
+// example: '/Users/nathan/Documents/github/ngatl/colmena/packages/admin-lb-sdk/src'
+var nativescriptAppPath = '../app/modules/backend';
 
 if (!backendRepoPath) {
     console.log("Open tools/install.js and set the 'var backendRepoPath =' to the location where you cloned https://github.com/ngatl/colmena + 'packages/admin-lb-sdk/src'!");

@@ -16,12 +16,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 // app
-import { SocketIOToken } from '../../backend/sockets/socket.browser';
+import { SDKModule } from '../backend';
 import { ApiModule } from '../api/api.module';
+import { SearchEffects } from '../search/effects';
+import { SEARCH_PROVIDERS } from '../search/services';
 import { UserEffects } from '../user/effects';
 import { UserModule } from '../user/user.module';
 import { UIEffects } from './effects';
-import { CORE_PROVIDERS } from './services';
+import { CORE_PROVIDERS, TNSStorageService, SocketService } from './services';
 import { AppReducer } from '../ngrx';
 
 // factories
@@ -31,35 +33,46 @@ export function defaultModalParams() {
 export function translateLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http, `/assets/i18n/`, '.json');
 }
-export function socketFactory() {
-  return {}; // TODO
-}
 
+// various feature module singletons with core providers
 const SINGLETON_PROVIDERS: any[] = [
   ...CORE_PROVIDERS,
+  ...SEARCH_PROVIDERS
 ];
 
 const MODULES: any[] = [
   NativeScriptModule,
   NativeScriptFormsModule,
   NativeScriptHttpModule,
+  // used here to allow fonticon pipe to be exported below
+  // if ever needed in root app component
   TNSFontIconModule,
 ];
 
 @NgModule({
   imports: [
+    // base modules (no forRoot configurations needed)
     ...MODULES,
+    // custom font icons
     TNSFontIconModule.forRoot({
       'fa': 'fonts/font-awesome.css'
     }),
+    // i18n support
     TranslateModule.forRoot([{
       provide: TranslateLoader,
       deps: [Http],
       useFactory: translateLoaderFactory
     }]),
+    // backend services configuration
+    SDKModule.forRoot({
+      storage: TNSStorageService,
+      socket: SocketService
+    }),
+    // app setup
     ApiModule,
     UserModule,
     StoreModule.provideStore(AppReducer),
+    EffectsModule.run(SearchEffects),
     EffectsModule.run(UserEffects),
     EffectsModule.run(UIEffects),
   ],
@@ -70,12 +83,9 @@ const MODULES: any[] = [
     // however because components will need to inject this for both conditions (route and modal)
     // this ensures Angular DI works fine everytime
     { provide: ModalDialogParams, useFactory: defaultModalParams },
-    { 
-      provide: SocketIOToken,
-      useFactory: socketFactory
-    }
   ],
   exports: [
+    // to reduce redundant imports in AppModule 
     ...MODULES
   ]
 })

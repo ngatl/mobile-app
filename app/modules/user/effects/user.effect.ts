@@ -5,8 +5,8 @@ import { Action, Store } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 // module
-import { SystemUser } from '../../../backend/models';
-import { LoggerService } from '../../../backend/services/custom/logger.service';
+import { SystemUser } from '../../backend/models';
+import { LoggerService } from '../../backend/services/custom/logger.service';
 import { ProgressService } from '../../core/services/progress.service';
 import { UserService } from '../services/user.service';
 import { UserActions } from '../actions/user.action';

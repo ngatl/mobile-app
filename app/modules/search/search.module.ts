@@ -3,28 +3,12 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { Routes } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
-import {
-  HOME_COMPONENTS, 
-  HomeComponent, 
-  DashboardComponent, 
-  SampleComponent
-} from './components';
-
+import { SEARCH_COMPONENTS, SearchComponent } from './components';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent,
-    children: [
-      {
-        path: '',
-        component: DashboardComponent
-      },
-      {
-        path: 'sample',
-        component: SampleComponent
-      }
-    ]
+    path: '',
+    component: SearchComponent
   }
 ];
 
@@ -34,10 +18,10 @@ const routes: Routes = [
     NativeScriptRouterModule.forChild(routes)
   ],
   declarations: [
-    ...HOME_COMPONENTS
+    ...SEARCH_COMPONENTS
   ],
   schemas: [
     NO_ERRORS_SCHEMA
   ]
 })
-export class HomeModule { }
+export class SearchModule { }

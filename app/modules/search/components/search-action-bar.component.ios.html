@@ -1,0 +1,12 @@
+<ActionBar class="action-bar">
+  <NavigationButton visibility="collapsed"></NavigationButton>
+  <!--<StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">-->
+  <SearchBar #search hint="Search" (clear)="onClear()" (submit)="onSubmit()" [(ngModel)]="searchInput" class="search-bar"></SearchBar>
+  <!--</StackLayout>-->
+  <ActionItem (tap)="back()">
+    <Button [text]="backIcon | fonticon" class="fa action-item"></Button>
+  </ActionItem>
+  <ActionItem (tap)="more()" ios.position="right">
+    <Button [text]="moreIcon | fonticon" class="fa action-item"></Button>
+  </ActionItem>
+</ActionBar>

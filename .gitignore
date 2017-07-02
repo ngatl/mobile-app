@@ -1,7 +1,7 @@
 *.js
 *.css
 *.map
-app/backend
+app/modules/backend
 hooks
 node_modules
 platforms

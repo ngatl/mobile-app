@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 // app
 import { type } from '../../helpers';
-import { SystemUser } from '../../../backend/models';
+import { SystemUser } from '../../backend/models';
 import { UserState } from '../states/user.state';
 
 export namespace UserActions {

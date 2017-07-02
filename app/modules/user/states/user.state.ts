@@ -1,4 +1,4 @@
-import { SystemUser } from '../../../backend/models';
+import { SystemUser } from '../../backend/models';
 
 export namespace UserState {
     export interface IState {

@@ -5,9 +5,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-// Draawer Service
-import { DrawerService } from '../../core/services/drawer.service';
-
 // nativescript
 
 // app
@@ -20,8 +17,7 @@ import { DrawerService } from '../../core/services/drawer.service';
 export class DashboardComponent implements AfterViewInit, OnInit, OnDestroy {
 
   constructor(
-    private store: Store<any>,
-	private drawer: DrawerService
+    private _store: Store<any>,
   ) {
 
   }

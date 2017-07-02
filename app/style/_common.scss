@@ -16,7 +16,7 @@
     
     //override for action-bar colored fonticons
     .action-bar Button {
-        color: #0854C7;
+        color: $ngatl-blue;
     }
     .gray {
         color: gray;
@@ -24,8 +24,25 @@
     .red {
         color: red;
     }
-    .sidedrawer-list-item-text {
-      border-width: 0;
+    .sidedrawer-content {
+        .sidedrawer-item {
+            .sidedrawer-list-item-icon {
+                font-size:28;
+            }
+            .sidedrawer-list-item-text {
+                border-width: 0;
+                font-size:20;
+            }
+            &.active {
+                background-color: $white;
+                .sidedrawer-list-item-icon {
+                    color: $ngatl-blue;
+                }
+                .sidedrawer-list-item-text {
+                    font-weight: bold;
+                }
+            }
+        }
     }
     /*cards*/
     .card{

@@ -1,6 +1,7 @@
 *.js
 *.css
 *.map
+!app/fonts/font-awesome.css
 app/modules/backend
 hooks
 node_modules

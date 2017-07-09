@@ -1,3 +1,4 @@
+export * from './arrays';
 export * from './equals';
 export * from './guid';
 export * from './icons';

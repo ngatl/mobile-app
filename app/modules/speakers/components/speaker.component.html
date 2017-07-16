@@ -1,4 +1,4 @@
-<search-action-bar></search-action-bar>
+<action-bar [title]="'Speakers'"></action-bar>
 <StackLayout class="page">
     <ListView [items]="(speakerState$ | async)?.list" class="list-group">
       <ng-template let-item="item" let-odd="odd" let-even="even">

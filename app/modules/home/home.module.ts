@@ -7,7 +7,7 @@ import {
   HOME_COMPONENTS, 
   HomeComponent, 
   DashboardComponent, 
-  SampleComponent
+  SampleComponent,
 } from './components';
 
 
@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: 'sample',
         component: SampleComponent
+      },
+      {
+        path: 'speakers',
+        loadChildren: './modules/speakers/speaker.module#SpeakerModule'
       }
     ]
   }

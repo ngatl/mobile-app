@@ -9,6 +9,8 @@ import { uiReducer } from '../core/reducers';
 import { UIState } from '../core/states';
 import { searchReducer } from '../search/reducers';
 import { SearchState } from '../search/states';
+import { speakerReducer } from '../speakers/reducers';
+import { SpeakerState } from '../speakers/states';
 import { userReducer } from '../user/reducers';
 import { UserState } from '../user/states';
 
@@ -34,12 +36,14 @@ export namespace AppActions {
 // overall shape of app state
 export interface IAppState {
     search: SearchState.IState;
+    speakers: SpeakerState.IState;
     user: UserState.IState;
     ui: UIState.IState;
 }
 
 const reducers = {
     search:     searchReducer,
+    speaker:    speakerReducer,
     user:       userReducer,
     ui:         uiReducer,
 };

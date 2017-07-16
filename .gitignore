@@ -7,3 +7,5 @@ hooks
 node_modules
 platforms
 !tools/install.js
+.vscode/
+**/*.DS_Store

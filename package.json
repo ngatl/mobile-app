@@ -10,7 +10,8 @@
     }
   },
   "scripts": {
-    "postinstall": "node tools/install.js"
+    "postinstall": "node tools/install.js",
+    "nuke": "rm -rf hooks node_modules platforms"
   },
   "dependencies": {
     "@angular/animations": "~4.1.0",

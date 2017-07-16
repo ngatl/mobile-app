@@ -21,6 +21,8 @@ import { SocketDriver } from '../backend/sockets/socket.driver';
 import { ApiModule } from '../api/api.module';
 import { SearchEffects } from '../search/effects';
 import { SEARCH_PROVIDERS } from '../search/services';
+import { SpeakerEffects } from '../speakers/effects';
+import { SPEAKER_PROVIDERS } from '../speakers/services';
 import { UserEffects } from '../user/effects';
 import { UserModule } from '../user/user.module';
 import { UIEffects } from './effects';
@@ -38,7 +40,8 @@ export function translateLoaderFactory(http: Http) {
 // various feature module singletons with core providers
 const SINGLETON_PROVIDERS: any[] = [
   ...CORE_PROVIDERS,
-  ...SEARCH_PROVIDERS
+  ...SEARCH_PROVIDERS,
+  ...SPEAKER_PROVIDERS,
 ];
 
 const MODULES: any[] = [
@@ -75,6 +78,7 @@ const MODULES: any[] = [
     UserModule,
     StoreModule.provideStore(AppReducer),
     EffectsModule.run(SearchEffects),
+    EffectsModule.run(SpeakerEffects),
     EffectsModule.run(UserEffects),
     EffectsModule.run(UIEffects),
   ],

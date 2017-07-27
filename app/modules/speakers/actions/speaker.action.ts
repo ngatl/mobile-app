@@ -43,5 +43,6 @@ export namespace SpeakerActions {
     = InitAction
     | CountAction
     | FetchAction
+    | ChangedAction;
 }
 

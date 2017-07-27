@@ -43,7 +43,7 @@ export interface IAppState {
 
 const reducers = {
     search:     searchReducer,
-    speaker:    speakerReducer,
+    speakers:    speakerReducer,
     user:       userReducer,
     ui:         uiReducer,
 };

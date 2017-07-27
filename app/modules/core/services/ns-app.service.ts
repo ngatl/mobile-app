@@ -23,7 +23,6 @@ import { ApiService } from '../../api/services/api.service';
 import { NSWebViewComponent } from '../../shared/components/ns-webview/ns-webview.component';
 import { ProgressIndicatorActions } from '../actions';
 import { ProgressService } from './progress.service';
-import { SocketService } from './socket.service';
 import { WindowService } from './window.service';
 
 export interface IOpenWebViewOptions {
@@ -57,7 +56,6 @@ export class NSAppService {
         private _modal: ModalDialogService,
         private _apiService: ApiService,
         private _progressService: ProgressService,
-        private _socketService: SocketService,
     ) {
         // TNSFontIconService - injected to construct it once for entire app
 
@@ -65,8 +63,6 @@ export class NSAppService {
         this._initAppVersion();
         this._initAppEvents();
         this._initOrientationHandler();
-        this._initApiServices();
-        this._initSockets();
     }
 
     public set isPasswordLogin(value: boolean) {
@@ -188,15 +184,6 @@ export class NSAppService {
                 // this.cdRef.detectChanges();
             });
         });
-    }
-
-    private _initApiServices() {
-        // TODO: any additional config needed to api
-    }
-
-    private _initSockets() {
-        // TODO: wire up various events
-        // this._socketService.connect(socketUrl, options);
     }
 }
 

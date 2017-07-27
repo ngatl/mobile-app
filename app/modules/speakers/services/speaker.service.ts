@@ -13,7 +13,6 @@ export class SpeakerService {
   constructor(
     private speakers: ConferenceSpeakerApi
   ) { 
-   
   }
 
   public count() {

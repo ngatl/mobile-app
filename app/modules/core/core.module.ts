@@ -16,7 +16,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 // app
-import { SDKModule, InternalStorage } from '../backend';
+import { SDKNativeModule } from '../backend';
 import { SocketDriver } from '../backend/sockets/socket.driver';
 import { ApiModule } from '../api/api.module';
 import { SearchEffects } from '../search/effects';
@@ -26,7 +26,7 @@ import { SPEAKER_PROVIDERS } from '../speakers/services';
 import { UserEffects } from '../user/effects';
 import { UserModule } from '../user/user.module';
 import { UIEffects } from './effects';
-import { CORE_PROVIDERS, TNSStorageService, SocketService } from './services';
+import { CORE_PROVIDERS, TNSStorageService } from './services';
 import { AppReducer } from '../ngrx';
 
 // factories
@@ -68,10 +68,7 @@ const MODULES: any[] = [
       useFactory: translateLoaderFactory
     }]),
     // backend services configuration
-    SDKModule.forRoot([
-      { provide: InternalStorage, useClass: TNSStorageService },
-      { provide: SocketDriver, useClass: SocketService }
-    ]),
+    SDKNativeModule.forRoot(),
     
     // app setup
     ApiModule,

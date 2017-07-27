@@ -17,22 +17,26 @@ export class SpeakerEffects {
 
   @Effect() count$ = this.actions$
     .ofType(SpeakerActions.ActionTypes.COUNT)
-    .switchMap((action) => 
+    .switchMap((action) =>
       this.speakerService.count()
         .map((count) => new SpeakerActions.ChangedAction({
           count
         }))
-      );
+    );
 
   @Effect() fetch$ = this.actions$
     .ofType(SpeakerActions.ActionTypes.FETCH)
-    .switchMap((action) => 
+    .switchMap((action) =>
       this.speakerService.fetch()
         .map((value) => {
+          console.log('fetch action:');
           console.log(value);
-          return new AppActions.NoopAction();
-        })
-      );
+          
+          return new SpeakerActions.ChangedAction({
+            list: value
+          });
+        }));
+  
 
   @Effect() init$ = this.actions$
     .ofType(SpeakerActions.ActionTypes.INIT)

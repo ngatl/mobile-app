@@ -1,4 +1,7 @@
 <StackLayout>
-    <Label [text]="detail.name" class="h1"></Label>
+    <Image *ngIf="detail?.imageUrl" [src]="detail?.imageUrl"></Image>
+    
+    <Label [text]="detail?.name" class="h1"></Label>
+    <Button [text]="detail?.twitter" (tap)="openInfo(detail?.twitter, 'twitter')" class="btn btn-primary"></Button>
     
 </StackLayout>

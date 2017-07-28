@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 // nativescript
 
 // app
+import { UserActions } from '../../../user/actions';
 
 @Component({
   moduleId: module.id,
@@ -16,14 +17,23 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DashboardComponent implements AfterViewInit, OnInit, OnDestroy {
 
+  public user: any;
+
   constructor(
     private _store: Store<any>,
   ) {
 
   }
 
-  ngOnInit() {
+  public login() {
+    this._store.dispatch(new UserActions.LoginAction(this.user));
+  }
 
+  ngOnInit() {
+    this.user = {
+      username: '',
+      password: ''
+    };
   }
 
   ngAfterViewInit() {

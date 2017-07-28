@@ -15,6 +15,29 @@ import { IAppState } from '../../ngrx/index';
 @Injectable()
 export class UserEffects {
 
+    @Effect() login$ = this._actions$
+        .ofType(UserActions.ActionTypes.LOGIN)
+        .switchMap((action: UserActions.LoginAction) =>
+            this._userService.login(action.payload)
+                .map((result) => {
+                    console.log('login result:');
+                    console.log(result);
+                    this._userService.persist(result);
+                    return new UserActions.ChangedAction({
+                        current: result
+                    });
+                })
+                .catch((err) => {
+                    console.log('error:');
+                    console.log(err);
+                    if (typeof err === 'object') {
+                        for (let key in err) {
+                            console.log(key, err[key]);
+                        }
+                    }
+                   return Observable.of(new UserActions.ApiErrorAction(err));
+                }));
+    
     constructor(
         private _store: Store<any>,
         private _logger: LoggerService,

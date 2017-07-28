@@ -6,7 +6,7 @@ export function userReducer(state: UserState.IState = UserState.initialState,
     let changeState = (customPayload?: any) => {
         return Object.assign({}, state, customPayload || action.payload);
     };
-    switch ( action.type ) {
+    switch (action.type) {
         case UserActions.ActionTypes.CHANGED:
             return changeState();
         default:

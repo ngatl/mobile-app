@@ -8,5 +8,8 @@ export const SHARED_COMPONENTS: any[] = [
   ActionBarBackComponent,
   ActionBarComponent,
   ModalTitleBarComponent,
-  NSWebViewComponent,
 ];
+
+export const SHARED_ENTRY_COMPONENTS: any[] = [
+  NSWebViewComponent
+]

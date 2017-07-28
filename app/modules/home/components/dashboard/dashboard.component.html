@@ -8,4 +8,11 @@
         <Button col="1" [text]="'fa-star' | fonticon" class="fa gray"></Button>
         <Button col="2" [text]="'fa-share-alt' | fonticon" class="fa gray"></Button>
     </GridLayout>
+    <StackLayout>
+        <TextField hint="Username" [(ngModel)]="user.username"></TextField>
+        <TextField secure="true" hint="Password" [(ngModel)]="user.password"></TextField>
+        <Button text="Login" (tap)="login()"></Button>
+        
+        
+    </StackLayout>
 </StackLayout>

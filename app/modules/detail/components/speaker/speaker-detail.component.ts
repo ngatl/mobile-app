@@ -1,6 +1,8 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+// nativescript
+import { ModalDialogService } from 'nativescript-angular/directives/dialogs';
 // libs
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -9,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { LoggerService } from '../../../backend/services/custom/logger.service';
 import { SpeakerState } from '../../../speakers/states';
 import { SpeakerActions } from '../../../speakers/actions';
+import { NSWebViewComponent } from '../../../shared/components/ns-webview/ns-webview.component';
 
 @Component({
   moduleId: module.id,
@@ -24,7 +27,9 @@ export class SpeakerDetailComponent implements AfterViewInit, OnInit {
   constructor(
     private _store: Store<any>,
     private _log: LoggerService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _vcRef: ViewContainerRef,
+    private _modal: ModalDialogService,
   ) {
     this._subs = [];
   }  
@@ -32,6 +37,9 @@ export class SpeakerDetailComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this._subs.push(this._store.select(s => s.speakers).subscribe((state: SpeakerState.IState) => {
       this.detail = state.selected;
+      for (let key in this.detail) {
+        console.log(key, this.detail[key]);
+      }
     }));
     this._subs.push(this._route.params.subscribe(params => {
       this._id = params['id'];
@@ -40,6 +48,23 @@ export class SpeakerDetailComponent implements AfterViewInit, OnInit {
     }));
     
   } 
+
+  public openInfo(data, type) {
+    let url = data;
+    switch( type) {
+      case 'twitter':
+        url = `https://twitter.com/${url}`
+        break;
+    }
+    
+    this._modal.showModal(NSWebViewComponent, {
+      viewContainerRef: this._vcRef,
+      context: {
+        url,
+        title: data
+      }
+    })
+  }
   
   ngAfterViewInit() {
 

@@ -11,7 +11,7 @@ import { NativeScriptUISideDrawerModule } from 'nativescript-telerik-ui/sidedraw
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
 // app
-import { SHARED_COMPONENTS } from './components';
+import { SHARED_COMPONENTS, SHARED_ENTRY_COMPONENTS } from './components';
 // import { SHARED_PIPES } from './pipes';
 
 const SHARED_MODULES: any[] = [
@@ -28,11 +28,12 @@ const SHARED_MODULES: any[] = [
   ],
   declarations: [
     ...SHARED_COMPONENTS,
+    ...SHARED_ENTRY_COMPONENTS,
     // ...SHARED_PIPES
   ],
-  // entryComponents: [
-  //   ...SHARED_ENTRY_COMPONENTS
-  // ],
+  entryComponents: [
+    ...SHARED_ENTRY_COMPONENTS
+  ],
   exports: [
     ...SHARED_MODULES,
     ...SHARED_COMPONENTS,

@@ -8,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 // app
 import { SystemUser } from '../../backend/models';
 import { LoggerService } from '../../backend/services/custom/logger.service';
+import { SystemUserApi } from '../../backend/services/custom/SystemUser';
 import { Cache, StorageKeys, TNSStorageService } from '../../core/services/tns-storage.service';
 import { WindowService } from '../../core/services/window.service';
 import { UserState } from '../states/user.state';
@@ -30,6 +31,7 @@ export class UserService extends Cache {
         private _httpService: Http,
         private _storageService: TNSStorageService,
         private _win: WindowService,
+        private _systemUserApi: SystemUserApi,
     ) {
         super(_storageService);
         this.isObjectCache = true;
@@ -59,6 +61,14 @@ export class UserService extends Cache {
 
     public setRedirectToAfterLoginUrl(url: string) {
         this._storageService.set(StorageKeys.REDIRECT_AFTER_LOGIN, { url });
+    }
+
+    public login(credentials: { username: string; password: string; }) {
+        return this._systemUserApi.login(JSON.stringify(credentials));
+    }
+
+    public persist(user: any) {
+        // TODO
     }
 
 }

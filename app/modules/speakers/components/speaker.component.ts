@@ -27,6 +27,8 @@ export class SpeakerComponent implements AfterViewInit, OnInit {
     this.speakerState$ = this.store.select(s => s.speakers);
   }
 
+
+
   ngAfterViewInit() {
 
   }

@@ -9,6 +9,7 @@ export namespace SpeakerActions {
     INIT: string;
     COUNT: string;
     FETCH: string;
+    SELECT: string;
     CHANGED: string;
   }
 
@@ -16,6 +17,7 @@ export namespace SpeakerActions {
     INIT: type(`${CATEGORY} Init`),
     COUNT: type(`${CATEGORY} Count`),
     FETCH: type(`${CATEGORY} Fetch`),
+    SELECT: type(`${CATEGORY} Select`),
     CHANGED: type(`${CATEGORY} Changed`),
   };
 
@@ -32,6 +34,11 @@ export namespace SpeakerActions {
   export class FetchAction implements Action {
     type = ActionTypes.FETCH;
     constructor(public payload?: any) { }
+  }
+
+  export class SelectAction implements Action {
+    type = ActionTypes.SELECT;
+    constructor(public payload?: any /* speaker id */) { }
   }
 
   export class ChangedAction implements Action {

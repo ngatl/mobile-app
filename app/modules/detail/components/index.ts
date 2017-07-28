@@ -1,7 +1,10 @@
-import { SearchDetailComponent } from './search-detail.component';
+import { SearchDetailComponent } from './search/search-detail.component';
+import { SpeakerDetailComponent } from './speaker/speaker-detail.component';
 
 export const DETAIL_COMPONENTS: any[] = [
-  SearchDetailComponent
+  SearchDetailComponent,
+  SpeakerDetailComponent
 ];
 
-export * from './search-detail.component';
+export * from './search/search-detail.component';
+export * from './speaker/speaker-detail.component';

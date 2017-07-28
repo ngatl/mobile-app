@@ -24,4 +24,8 @@ export class SpeakerService {
     return this.speakers.find();
   }
 
+  public loadDetail(id) {
+    return this.speakers.findById(id);
+  }
+
 }

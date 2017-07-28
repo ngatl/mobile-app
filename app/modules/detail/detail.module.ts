@@ -3,12 +3,16 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { Routes } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
-import { DETAIL_COMPONENTS, SearchDetailComponent } from './components';
+import { DETAIL_COMPONENTS, SearchDetailComponent, SpeakerDetailComponent } from './components';
 
 const routes: Routes = [
   {
     path: 'search/:id',
     component: SearchDetailComponent
+  },
+  {
+    path: 'speaker/:id',
+    component: SpeakerDetailComponent
   },
 ];
 

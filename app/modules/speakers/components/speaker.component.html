@@ -2,7 +2,7 @@
 <StackLayout class="page h-full">
     <ListView [items]="(speakerState$ | async)?.list" class="list-group h-full">
       <ng-template let-item="item" let-odd="odd" let-even="even">
-        <StackLayout>
+        <StackLayout [nsRouterLink]="['/detail/speaker', item.id]">
           <Label [text]="item.name" class="list-group-item"></Label>
         </StackLayout>
       </ng-template>

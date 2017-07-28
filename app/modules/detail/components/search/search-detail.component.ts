@@ -6,9 +6,9 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 
 // app
-import { LoggerService } from '../../backend/services/custom/logger.service';
-import { SearchState } from '../../search/states';
-import { SearchActions } from '../../search/actions';
+import { LoggerService } from '../../../backend/services/custom/logger.service';
+import { SearchState } from '../../../search/states';
+import { SearchActions } from '../../../search/actions';
 
 @Component({
   moduleId: module.id,

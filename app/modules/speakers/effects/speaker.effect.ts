@@ -36,6 +36,16 @@ export class SpeakerEffects {
             list: value
           });
         }));
+
+    @Effect() select$ = this.actions$
+      .ofType(SpeakerActions.ActionTypes.SELECT)
+      .switchMap((action) => this.speakerService.loadDetail(action.payload))
+      .map((result) => {
+        this.log.info(SpeakerActions.ActionTypes.SELECT);
+        return new SpeakerActions.ChangedAction({
+          selected: result
+        });
+      });
   
 
   @Effect() init$ = this.actions$

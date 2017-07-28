@@ -30,7 +30,7 @@ export class SpeakerEffects {
       this.speakerService.fetch()
         .map((value) => {
           console.log('fetch action:');
-          console.log(value);
+          console.log(JSON.stringify(value));
           
           return new SpeakerActions.ChangedAction({
             list: value

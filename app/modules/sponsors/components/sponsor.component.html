@@ -1,0 +1,11 @@
+<action-bar [title]="'Sponsors'"></action-bar>
+<StackLayout class="page h-full">
+    <ListView [items]="(sponsorState$ | async)?.list" class="list-group h-full">
+      <ng-template let-item="item" let-odd="odd" let-even="even">
+        <StackLayout [nsRouterLink]="['/detail/sponsor', item.id]">
+          <Label [text]="item.name" class="list-group-item"></Label>
+          <Label [text]="item.level" class="list-group-item"></Label>
+        </StackLayout>
+      </ng-template>
+    </ListView>
+</StackLayout>

@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 
 import { LoopBackConfig } from './modules/backend/lb.config';
 
-const apiBaseUrl = 'http://127.0.0.1:3000';
+const apiBaseUrl = 'https://ngatl.now.sh';
 
 LoopBackConfig.setBaseURL(apiBaseUrl);
 

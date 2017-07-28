@@ -27,6 +27,10 @@ const routes: Routes = [
       {
         path: 'speakers',
         loadChildren: './modules/speakers/speaker.module#SpeakerModule'
+      },
+      {
+        path: 'sponsors',
+        loadChildren: './modules/sponsors/sponsor.module#SponsorModule'
       }
     ]
   }

@@ -22,6 +22,12 @@
             <Label [text]="'fa-th-list' | fonticon" class="fa sidedrawer-list-item-icon" row="0" col="0"></Label>
             <Label text="Speakers"  class="sidedrawer-list-item-text" row="0" col="1"></Label>
         </GridLayout>
+          
+        <GridLayout rows="60" columns="auto,*,auto" [nsRouterLink]="['/landing/home', 'sponsors']" nsRouterLinkActive="active" [nsRouterLinkActiveOptions]="{exact:true}"
+        pageTransition="slideleft" class="sidedrawer-item">
+            <Label [text]="'fa-gift' | fonticon" class="fa sidedrawer-list-item-icon" row="0" col="0"></Label>
+            <Label text="Sponsors"  class="sidedrawer-list-item-text" row="0" col="1"></Label>
+        </GridLayout>
 
       </StackLayout>
     </ScrollView>

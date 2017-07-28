@@ -23,6 +23,8 @@ import { SearchEffects } from '../search/effects';
 import { SEARCH_PROVIDERS } from '../search/services';
 import { SpeakerEffects } from '../speakers/effects';
 import { SPEAKER_PROVIDERS } from '../speakers/services';
+import { SponsorEffects } from '../sponsors/effects';
+import { SPONSOR_PROVIDERS } from '../sponsors/services';
 import { UserEffects } from '../user/effects';
 import { UserModule } from '../user/user.module';
 import { UIEffects } from './effects';
@@ -42,6 +44,7 @@ const SINGLETON_PROVIDERS: any[] = [
   ...CORE_PROVIDERS,
   ...SEARCH_PROVIDERS,
   ...SPEAKER_PROVIDERS,
+  ...SPONSOR_PROVIDERS
 ];
 
 const MODULES: any[] = [
@@ -76,6 +79,7 @@ const MODULES: any[] = [
     StoreModule.provideStore(AppReducer),
     EffectsModule.run(SearchEffects),
     EffectsModule.run(SpeakerEffects),
+    EffectsModule.run(SponsorEffects),
     EffectsModule.run(UserEffects),
     EffectsModule.run(UIEffects),
   ],

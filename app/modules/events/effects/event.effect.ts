@@ -29,7 +29,7 @@ export class EventEffects {
     .switchMap((action) =>
       this.eventService.fetch()
         .map((value) => {
-          console.log('fetching sponsors:');
+          console.log('fetching events:');
           console.log(JSON.stringify(value));
           
           return new EventActions.ChangedAction({

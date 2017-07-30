@@ -13,6 +13,8 @@ import { speakerReducer } from '../speakers/reducers';
 import { SpeakerState } from '../speakers/states';
 import { userReducer } from '../user/reducers';
 import { UserState } from '../user/states';
+import { eventReducer } from '../events/reducers';
+import { EventState } from '../events/states';
 
 export namespace AppActions {
     const CATEGORY: string = 'App';
@@ -35,6 +37,7 @@ export namespace AppActions {
 
 // overall shape of app state
 export interface IAppState {
+    events: EventState.IState;
     search: SearchState.IState;
     speakers: SpeakerState.IState;
     user: UserState.IState;
@@ -42,8 +45,9 @@ export interface IAppState {
 }
 
 const reducers = {
+    events:      eventReducer,
     search:     searchReducer,
-    speakers:    speakerReducer,
+    speakers:   speakerReducer,
     user:       userReducer,
     ui:         uiReducer,
 };

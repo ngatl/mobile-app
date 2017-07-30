@@ -1,7 +1,7 @@
 import { EventState } from '../states/event.state';
 import { EventActions } from '../actions/event.action';
 
-export function sponsorReducer(
+export function eventReducer(
     state: EventState.IState = EventState.initialState,
     action: EventActions.Actions
 ): EventState.IState {

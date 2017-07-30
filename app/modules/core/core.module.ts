@@ -19,6 +19,8 @@ import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 import { SDKNativeModule } from '../backend';
 import { SocketDriver } from '../backend/sockets/socket.driver';
 import { ApiModule } from '../api/api.module';
+import { EventEffects } from '../events/effects';
+import { EVENT_PROVIDERS } from '../events/services';
 import { SearchEffects } from '../search/effects';
 import { SEARCH_PROVIDERS } from '../search/services';
 import { SpeakerEffects } from '../speakers/effects';
@@ -42,6 +44,7 @@ export function translateLoaderFactory(http: Http) {
 // various feature module singletons with core providers
 const SINGLETON_PROVIDERS: any[] = [
   ...CORE_PROVIDERS,
+  ...EVENT_PROVIDERS,
   ...SEARCH_PROVIDERS,
   ...SPEAKER_PROVIDERS,
   ...SPONSOR_PROVIDERS
@@ -77,6 +80,7 @@ const MODULES: any[] = [
     ApiModule,
     UserModule,
     StoreModule.provideStore(AppReducer),
+    EffectsModule.run(EventEffects),
     EffectsModule.run(SearchEffects),
     EffectsModule.run(SpeakerEffects),
     EffectsModule.run(SponsorEffects),

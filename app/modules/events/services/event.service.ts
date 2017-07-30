@@ -17,7 +17,7 @@ export class EventService {
   }
 
   public fetch() {
-    console.log('fetch!');
+    console.log('fetch events!');
     return this.events.find();
   }
 

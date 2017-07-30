@@ -31,6 +31,10 @@ const routes: Routes = [
       {
         path: 'sponsors',
         loadChildren: './modules/sponsors/sponsor.module#SponsorModule'
+      },
+      {
+        path: 'events',
+        loadChildren: './modules/events/events.module#EventsModule'
       }
     ]
   }

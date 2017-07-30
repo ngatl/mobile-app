@@ -1,0 +1,10 @@
+<action-bar [title]="'Events'"></action-bar>
+<StackLayout class="page h-full">
+    <ListView [items]="(eventState$ | async)?.list" class="list-group h-full">
+      <ng-template let-item="item" let-odd="odd" let-even="even">
+        <StackLayout [nsRouterLink]="['/detail/event', item.id]">
+          <Label [text]="item.name" class="list-group-item"></Label>
+        </StackLayout>
+      </ng-template>
+    </ListView>
+</StackLayout>

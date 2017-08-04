@@ -3,18 +3,20 @@
 // -----------------------------------------------------------
 "use strict";
 
+require('dotenv').config();
+
 var debugging = false;
 
 var fs = require('fs');
 var cp = require('child_process');
 var path = require('path');
 
-// Must set this before running 'npm i'
-var backendRepoPath = ''; // '/Users/nathan/Documents/github/ngatl/colmena/packages/admin-lb-sdk-ns/src'
+// Must set this in .env file before running 'npm i'
+var backendRepoPath = process.env.BACKEND_REPO_PATH;
 var nativescriptAppPath = '../app/modules/backend';
 
 if (!backendRepoPath) {
-    console.log("Open tools/install.js and set the 'var backendRepoPath =' to the location where you cloned https://github.com/ngatl/colmena + 'packages/admin-lb-sdk/src'!");
+    console.log("Copy file .env.template in the root dir to .env and set the 'BACKEND_REPO_PATH=' to the location where you cloned https://github.com/ngatl/colmena + 'packages/admin-lb-sdk/src'!");
     return 0;
 }
 // Root SymLink Code for Windows

@@ -9,3 +9,5 @@ platforms
 !tools/install.js
 .vscode/angulardoc.json
 **/*.DS_Store
+.idea
+.env

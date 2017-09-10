@@ -26,16 +26,19 @@ export class SponsorEffects {
 
   @Effect() fetch$ = this.actions$
     .ofType(SponsorActions.ActionTypes.FETCH)
-    .switchMap((action) =>
-      this.sponsorService.fetch()
-        .map((value) => {
-          console.log('fetching sponsors:');
-          console.log(JSON.stringify(value));
+    .switchMap((action) => this.sponsorService.fetch())
+    .map((value) => {
+      console.log('fetched sponsors:', value);
+      // console.log(JSON.stringify(value));
           
-          return new SponsorActions.ChangedAction({
-            list: value
-          });
-        }));
+      return new SponsorActions.ChangedAction({
+        list: value
+      });
+    })
+    .catch(err => {
+      console.log('sponsor fetch error:', err);
+      return Observable.of(err);
+    });
 
     @Effect() select$ = this.actions$
       .ofType(SponsorActions.ActionTypes.SELECT)

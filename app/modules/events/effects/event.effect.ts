@@ -26,16 +26,19 @@ export class EventEffects {
 
   @Effect() fetch$ = this.actions$
     .ofType(EventActions.ActionTypes.FETCH)
-    .switchMap((action) =>
-      this.eventService.fetch()
-        .map((value) => {
-          console.log('fetching events:', value);
-          // console.log(JSON.stringify(value));
+    .switchMap((action) => this.eventService.fetch())
+    .map((value) => {
+      console.log('fetched events result:', value);
+      // console.log(JSON.stringify(value));
           
-          return new EventActions.ChangedAction({
-            list: value
-          });
-        }));
+      return new EventActions.ChangedAction({
+        list: value
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      return Observable.of(err);
+    });
 
     @Effect() select$ = this.actions$
       .ofType(EventActions.ActionTypes.SELECT)

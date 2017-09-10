@@ -20,7 +20,7 @@ export class SpeakerService {
   }
 
   public fetch() {
-    console.log('fetch!');
+    console.log('fetch speakers!');
     return this.speakers.find();
   }
 

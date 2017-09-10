@@ -29,8 +29,8 @@ export class SpeakerEffects {
     .ofType(SpeakerActions.ActionTypes.FETCH)
     .switchMap((action) => this.speakerService.fetch())
     .map((value) => {
-      console.log('fetch action:', value);
-      // console.log(JSON.stringify(value));
+      this.log.info('fetched speakers result:', value);
+      // this.log.info(JSON.stringify(value));
           
       return new SpeakerActions.ChangedAction({
         list: value
@@ -42,7 +42,7 @@ export class SpeakerEffects {
     .ofType(SpeakerActions.ActionTypes.SELECT)
     .switchMap((action: SpeakerActions.SelectAction) => this.speakerService.loadDetail(action.payload))
     .map((result) => {
-      this.log.info(SpeakerActions.ActionTypes.SELECT);
+      this.log.info('speaker select result:', result);
       return new SpeakerActions.ChangedAction({
         selected: result
       });

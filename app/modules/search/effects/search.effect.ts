@@ -14,14 +14,6 @@ import { SearchActions } from '../actions/search.action';
 @Injectable()
 export class SearchEffects {
 
-  @Effect() init$ = this.actions$
-    .ofType(SearchActions.ActionTypes.INIT)
-    .startWith(new SearchActions.InitAction())
-    .map(action => new SearchActions.UpdatedAction({
-      searching: false,
-      results: this.searchService.sampleInitResults
-    }));
-
   @Effect() search$ = this.actions$
     .ofType(SearchActions.ActionTypes.SEARCH)
     .map((action: SearchActions.SearchAction) => new SearchActions.UpdatedAction({
@@ -77,6 +69,14 @@ export class SearchEffects {
         searching: false
       });
     });
+  
+    @Effect() init$ = this.actions$
+    .ofType(SearchActions.ActionTypes.INIT)
+    .startWith(new SearchActions.InitAction())
+    .map(action => new SearchActions.UpdatedAction({
+      searching: false,
+      results: this.searchService.sampleInitResults
+    }));
 
   constructor(private store: Store<any>, private actions$: Actions, private log: LoggerService, private searchService: SearchService) { }
 }

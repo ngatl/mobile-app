@@ -20,7 +20,7 @@ export class SponsorService {
   }
 
   public fetch() {
-    console.log('fetch!');
+    console.log('fetch sponsors!');
     return this.sponsors.find();
   }
 

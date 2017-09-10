@@ -26,15 +26,24 @@ export class WindowService {
     }
     public scrollTo(x?: number, y?: number) { }
     public alert(msg: string | dialogs.AlertOptions): Promise<any> {
-        if ( !isString(msg) ) {
-            return dialogs.alert(msg);
+        if (!isString(msg)) {
+            const options: dialogs.AlertOptions = {
+                message: <string>msg,
+                okButtonText: 'Ok',
+            };
+            return dialogs.alert(options);
         } else {
             return (() => { throw new Error('String is not valid {N} alert parameter'); })();
         }
     }
     public confirm(msg: string | dialogs.ConfirmOptions): Promise<any> {
-        if ( !isString(msg) ) {
-            return dialogs.confirm(msg);
+        if (!isString(msg)) {
+            const options: dialogs.ConfirmOptions = {
+                message: <string>msg,
+                okButtonText: 'Ok',
+                cancelButtonText: 'Cancel'
+            };
+            return dialogs.confirm(options);
         } else {
             return (() => { throw new Error('String is not valid {N} confirm parameter'); })();
         }

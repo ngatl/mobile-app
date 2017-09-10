@@ -39,7 +39,7 @@ export class SponsorEffects {
 
     @Effect() select$ = this.actions$
       .ofType(SponsorActions.ActionTypes.SELECT)
-      .switchMap((action) => this.sponsorService.loadDetail(action.payload))
+      .switchMap((action: SponsorActions.SelectAction) => this.sponsorService.loadDetail(action.payload))
       .map((result) => {
         this.log.info(SponsorActions.ActionTypes.SELECT);
         return new SponsorActions.ChangedAction({

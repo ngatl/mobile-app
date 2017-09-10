@@ -31,7 +31,7 @@ import { UserEffects } from '../user/effects';
 import { UserModule } from '../user/user.module';
 import { UIEffects } from './effects';
 import { CORE_PROVIDERS, TNSStorageService } from './services';
-import { AppReducer } from '../ngrx';
+import { reducers } from '../ngrx';
 
 // factories
 export function defaultModalParams() {
@@ -68,24 +68,28 @@ const MODULES: any[] = [
       'fa': 'fonts/font-awesome.css'
     }),
     // i18n support
-    TranslateModule.forRoot([{
-      provide: TranslateLoader,
-      deps: [Http],
-      useFactory: translateLoaderFactory
-    }]),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: translateLoaderFactory,
+        deps: [Http],
+      },
+    }),
     // backend services configuration
     SDKNativeModule.forRoot(),
-    
+
     // app setup
     ApiModule,
     UserModule,
-    StoreModule.provideStore(AppReducer),
-    EffectsModule.run(EventEffects),
-    EffectsModule.run(SearchEffects),
-    EffectsModule.run(SpeakerEffects),
-    EffectsModule.run(SponsorEffects),
-    EffectsModule.run(UserEffects),
-    EffectsModule.run(UIEffects),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([
+      EventEffects,
+      SearchEffects,
+      SpeakerEffects,
+      SponsorEffects,
+      UserEffects,
+      UIEffects,
+    ]),
   ],
   providers: [
     ...SINGLETON_PROVIDERS,

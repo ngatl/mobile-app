@@ -19,8 +19,3 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/throttle';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/withLatestFrom';
-
-// ngrx
-import '@ngrx/core/add/operator/enterZone';
-import '@ngrx/core/add/operator/leaveZone';
-import '@ngrx/core/add/operator/select';

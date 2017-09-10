@@ -29,8 +29,8 @@ export class EventEffects {
     .switchMap((action) =>
       this.eventService.fetch()
         .map((value) => {
-          console.log('fetching events:');
-          console.log(JSON.stringify(value));
+          console.log('fetching events:', value);
+          // console.log(JSON.stringify(value));
           
           return new EventActions.ChangedAction({
             list: value
@@ -39,7 +39,7 @@ export class EventEffects {
 
     @Effect() select$ = this.actions$
       .ofType(EventActions.ActionTypes.SELECT)
-      .switchMap((action) => this.eventService.loadDetail(action.payload))
+      .switchMap((action: EventActions.SelectAction) => this.eventService.loadDetail(action.payload))
       .map((result) => {
         this.log.info(EventActions.ActionTypes.SELECT);
         return new EventActions.ChangedAction({

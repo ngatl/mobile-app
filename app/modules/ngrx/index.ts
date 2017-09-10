@@ -44,7 +44,7 @@ export interface IAppState {
     ui: UIState.IState;
 }
 
-const reducers = {
+export const reducers = {
     events:      eventReducer,
     search:     searchReducer,
     speakers:   speakerReducer,
@@ -52,9 +52,9 @@ const reducers = {
     ui:         uiReducer,
 };
 
-const appStateReducer: ActionReducer<IAppState> = combineReducers(reducers);
+// const appStateReducer: ActionReducer<IAppState> = combineReducers(reducers);
 
-export function AppReducer(state: any,
-                           action: any) {
-    return appStateReducer(state, action);
-}
+// export function AppReducer(state: any,
+//                            action: any) {
+//     return reducers;// appStateReducer(state, action);
+// }

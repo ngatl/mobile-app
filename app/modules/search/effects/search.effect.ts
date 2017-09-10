@@ -24,7 +24,7 @@ export class SearchEffects {
 
   @Effect() search$ = this.actions$
     .ofType(SearchActions.ActionTypes.SEARCH)
-    .map(action => new SearchActions.UpdatedAction({
+    .map((action: SearchActions.SearchAction) => new SearchActions.UpdatedAction({
       searching: true,
       term: action.payload
     }))
@@ -40,7 +40,7 @@ export class SearchEffects {
 
   @Effect() searchSuccess$ = this.actions$
     .ofType(SearchActions.ActionTypes.SEARCH_SUCCESS)
-    .map((action) => {
+    .map((action: SearchActions.SearchSuccessAction) => {
       this.log.info(SearchActions.ActionTypes.SEARCH_SUCCESS);
       return new SearchActions.UpdatedAction({
         searching: false,
@@ -50,7 +50,7 @@ export class SearchEffects {
   
   @Effect() select$ = this.actions$
     .ofType(SearchActions.ActionTypes.SELECT)
-    .switchMap((action) => this.searchService.loadDetail(action.payload))
+    .switchMap((action: SearchActions.SelectAction) => this.searchService.loadDetail(action.payload))
     .map((result) => {
       this.log.info(SearchActions.ActionTypes.SELECT);
       return new SearchActions.UpdatedAction({

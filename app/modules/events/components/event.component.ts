@@ -27,8 +27,6 @@ export class EventComponent implements AfterViewInit, OnInit {
     this.eventState$ = this.store.select(s => s.events);
   }
 
-
-
   ngAfterViewInit() {
 
   }

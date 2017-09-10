@@ -49,7 +49,7 @@ export class SpeakerEffects {
     })
     .catch(err => Observable.of(new SpeakerActions.ApiErrorAction(err)));
   
-    @Effect() apiError$ = this.actions$
+  @Effect() apiError$ = this.actions$
     .ofType(SpeakerActions.ActionTypes.API_ERROR)
     .withLatestFrom(this.store)
     .map(([action, state]: [SpeakerActions.ApiErrorAction, any]) => {

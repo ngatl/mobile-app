@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'event/:id',
     component: EventDetailComponent
   },
+  // {
+  //   path: 'sponsor/:id',
+  //   component: SponsorDetailComponent
+  // },
 ];
 
 @NgModule({

@@ -10,6 +10,7 @@ export namespace EventActions {
     COUNT: string;
     FETCH: string;
     SELECT: string;
+    API_ERROR: string;
     CHANGED: string;
   }
 
@@ -18,6 +19,7 @@ export namespace EventActions {
     COUNT: type(`${CATEGORY} Count`),
     FETCH: type(`${CATEGORY} Fetch`),
     SELECT: type(`${CATEGORY} Select`),
+    API_ERROR: type(`${CATEGORY} Api Error`),
     CHANGED: type(`${CATEGORY} Changed`),
   };
 
@@ -41,6 +43,11 @@ export namespace EventActions {
     constructor(public payload?: any /* event id */) { }
   }
 
+  export class ApiErrorAction implements Action {
+    type = ActionTypes.API_ERROR;
+    constructor(public payload?: any) { }
+  }
+
   export class ChangedAction implements Action {
     type = ActionTypes.CHANGED;
     constructor(public payload?: EventState.IState) { }
@@ -50,6 +57,7 @@ export namespace EventActions {
     = InitAction
     | CountAction
     | FetchAction
+    | ApiErrorAction
     | ChangedAction;
 }
 

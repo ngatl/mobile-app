@@ -10,6 +10,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 
+// should ideally only be done in ApiService upon construction
 import { LoopBackConfig } from './modules/backend/lb.config';
 
 const apiBaseUrl = 'http://127.0.0.1:3000';// 'https://ngatl.now.sh';

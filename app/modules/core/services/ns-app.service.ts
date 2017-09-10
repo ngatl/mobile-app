@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 // app
 import { ApiService } from '../../api/services/api.service';
+import { LoggerService } from '../../backend/services/custom/logger.service';
 import { NSWebViewComponent } from '../../shared/components/ns-webview/ns-webview.component';
 import { ProgressIndicatorActions } from '../actions';
 import { ProgressService } from './progress.service';
@@ -53,12 +54,14 @@ export class NSAppService {
         private _ngRouter: Router,
         private _ngZone: NgZone,
         private _win: WindowService,
+        private _logger: LoggerService,
         private _modal: ModalDialogService,
         private _apiService: ApiService,
         private _progressService: ProgressService,
     ) {
         // TNSFontIconService - injected to construct it once for entire app
-
+        this._logger.log('NSAppService constructed!');
+        
         // initialize core services
         this._initAppVersion();
         this._initAppEvents();

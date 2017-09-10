@@ -10,6 +10,7 @@ export namespace SponsorActions {
     COUNT: string;
     FETCH: string;
     SELECT: string;
+    API_ERROR: string;
     CHANGED: string;
   }
 
@@ -18,6 +19,7 @@ export namespace SponsorActions {
     COUNT: type(`${CATEGORY} Count`),
     FETCH: type(`${CATEGORY} Fetch`),
     SELECT: type(`${CATEGORY} Select`),
+    API_ERROR: type(`${CATEGORY} Api Error`),
     CHANGED: type(`${CATEGORY} Changed`),
   };
 
@@ -39,6 +41,11 @@ export namespace SponsorActions {
   export class SelectAction implements Action {
     type = ActionTypes.SELECT;
     constructor(public payload?: any /* sponsor id */) { }
+  }
+
+  export class ApiErrorAction implements Action {
+    type = ActionTypes.API_ERROR;
+    constructor(public payload?: any) { }
   }
 
   export class ChangedAction implements Action {

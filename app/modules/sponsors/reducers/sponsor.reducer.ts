@@ -5,12 +5,19 @@ export function sponsorReducer(
     state: SponsorState.IState = SponsorState.initialState,
     action: SponsorActions.Actions
 ): SponsorState.IState {
-  let changeState = () => {
-    return Object.assign({}, state, action.payload);
+  let changeState = (payload) => {
+    return Object.assign({}, state, payload);
   };
   switch (action.type) {
+    case SponsorActions.ActionTypes.API_ERROR:
+      return changeState({
+        errors: [
+          action.payload,
+          ...(state.errors || [])
+        ]
+      });
     case SponsorActions.ActionTypes.CHANGED:
-      return changeState();
+      return changeState(action.payload);
     default:
       return state;
   }

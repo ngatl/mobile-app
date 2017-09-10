@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 // app
 import { LoggerService } from '../../backend/services/custom/logger.service';
+import { WindowService } from '../../core/services/window.service';
 import { EventService } from '../services/event.service';
 import { EventActions } from '../actions/event.action';
 import { AppActions } from '../../ngrx';
@@ -35,10 +36,7 @@ export class EventEffects {
         list: value
       });
     })
-    .catch(err => {
-      console.log(err);
-      return Observable.of(err);
-    });
+    .catch(err => Observable.of(new EventActions.ApiErrorAction()))
 
     @Effect() select$ = this.actions$
       .ofType(EventActions.ActionTypes.SELECT)
@@ -50,6 +48,19 @@ export class EventEffects {
         });
       });
   
+    @Effect() apiError$ = this.actions$
+      .ofType(EventActions.ActionTypes.API_ERROR)
+      .withLatestFrom(this.store)
+      .map(([action, state]: [EventActions.ApiErrorAction, any]) => {
+          this.win.alert(action.payload);
+          return new EventActions.ChangedAction({
+              errors: [
+                  action.payload,
+                  ...(state.errors || [])
+              ],
+          });
+      });
+  
 
   @Effect() init$ = this.actions$
     .ofType(EventActions.ActionTypes.INIT)
@@ -57,7 +68,10 @@ export class EventEffects {
     .map(action => new EventActions.FetchAction());
 
   constructor(
-    private store: Store<any>, private actions$: Actions,
-    private log: LoggerService, private eventService: EventService
+    private store: Store<any>,
+    private actions$: Actions,
+    private log: LoggerService,
+    private eventService: EventService,
+    private win: WindowService,
   ) { }
 }

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 
 // app
 import { LoggerService } from '../../backend/services/custom/logger.service';
+import { WindowService } from '../../core/services/window.service';
 import { SponsorService } from '../services/sponsor.service';
 import { SponsorActions } from '../actions/sponsor.action';
 import { AppActions } from '../../ngrx';
@@ -35,10 +36,7 @@ export class SponsorEffects {
         list: value
       });
     })
-    .catch(err => {
-      console.log('sponsor fetch error:', err);
-      return Observable.of(err);
-    });
+    .catch(err => Observable.of(new SponsorActions.ApiErrorAction(err)));
 
     @Effect() select$ = this.actions$
       .ofType(SponsorActions.ActionTypes.SELECT)
@@ -50,11 +48,24 @@ export class SponsorEffects {
         });
       });
   
+    @Effect() apiError$ = this.actions$
+      .ofType(SponsorActions.ActionTypes.API_ERROR)
+      .withLatestFrom(this.store)
+      .map(([action, state]: [SponsorActions.ApiErrorAction, any]) => {
+          this.win.alert(action.payload);
+          return new SponsorActions.ChangedAction({
+              errors: [
+                  action.payload,
+                  ...(state.errors || [])
+              ],
+          });
+      });
+  
 
   @Effect() init$ = this.actions$
     .ofType(SponsorActions.ActionTypes.INIT)
     .startWith(new SponsorActions.InitAction())
     .map(action => new SponsorActions.FetchAction());
 
-  constructor(private store: Store<any>, private actions$: Actions, private log: LoggerService, private sponsorService: SponsorService) { }
+  constructor(private store: Store<any>, private actions$: Actions, private log: LoggerService, private sponsorService: SponsorService, private win: WindowService) { }
 }

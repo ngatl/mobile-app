@@ -11,6 +11,8 @@ import { searchReducer } from '../search/reducers';
 import { SearchState } from '../search/states';
 import { speakerReducer } from '../speakers/reducers';
 import { SpeakerState } from '../speakers/states';
+import { sponsorReducer } from '../sponsors/reducers';
+import { SponsorState } from '../sponsors/states';
 import { userReducer } from '../user/reducers';
 import { UserState } from '../user/states';
 import { eventReducer } from '../events/reducers';
@@ -40,14 +42,16 @@ export interface IAppState {
     events: EventState.IState;
     search: SearchState.IState;
     speakers: SpeakerState.IState;
+    sponsors: SponsorState.IState;
     user: UserState.IState;
     ui: UIState.IState;
 }
 
 export const reducers = {
-    events:      eventReducer,
+    events:     eventReducer,
     search:     searchReducer,
     speakers:   speakerReducer,
+    sponsors:   sponsorReducer,
     user:       userReducer,
     ui:         uiReducer,
 };

@@ -3,9 +3,11 @@ export namespace EventState {
     list?: Array<any>;
     count?: number;
     selected?: any;
+    errors?: Array<any>;
   }
 
   export const initialState: IState = {
-    list: []
+    list: [],
+    errors: []
   };
 }

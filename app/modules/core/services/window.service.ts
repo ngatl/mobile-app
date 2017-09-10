@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
 
 // nativescript
 import * as dialogs from 'tns-core-modules/ui/dialogs';
@@ -9,6 +10,8 @@ const isString = (arg: any): arg is string => typeof arg === 'string';
 
 @Injectable()
 export class WindowService {
+    private _dialogOpened = false;
+
     public get navigator(): any {
         return {
             language: device.language,
@@ -26,27 +29,53 @@ export class WindowService {
     }
     public scrollTo(x?: number, y?: number) { }
     public alert(msg: string | dialogs.AlertOptions): Promise<any> {
-        if (!isString(msg)) {
-            const options: dialogs.AlertOptions = {
-                message: <string>msg,
-                okButtonText: 'Ok',
-            };
-            return dialogs.alert(options);
-        } else {
-            return (() => { throw new Error('String is not valid {N} alert parameter'); })();
-        }
+        return new Promise((resolve) => {
+            if (!this._dialogOpened) {
+                this._dialogOpened = true;
+                console.log('alert msg.constructor.name:', msg.constructor.name);
+                console.log('typeof msg:', typeof msg);
+                if (msg instanceof Response) {
+                    try {
+                        msg = msg.json();
+                        msg = (<any>msg).message;
+                    } catch (err) {
+                        msg = msg.text();
+                    }
+                }
+                const options: dialogs.AlertOptions = {
+                    message: <string>msg,
+                    okButtonText: 'Ok',
+                };
+                dialogs.alert(options).then((ok) => {
+                    this._dialogOpened = false;
+                    resolve();
+                });
+            }
+        });
     }
     public confirm(msg: string | dialogs.ConfirmOptions): Promise<any> {
-        if (!isString(msg)) {
-            const options: dialogs.ConfirmOptions = {
-                message: <string>msg,
-                okButtonText: 'Ok',
-                cancelButtonText: 'Cancel'
-            };
-            return dialogs.confirm(options);
-        } else {
-            return (() => { throw new Error('String is not valid {N} confirm parameter'); })();
-        }
+        return new Promise((resolve, reject) => {
+            if (!this._dialogOpened) {
+                this._dialogOpened = true;
+                let options: dialogs.ConfirmOptions = {
+                    okButtonText: 'Ok',
+                    cancelButtonText: 'Cancel'
+                };
+                if (typeof msg === 'string') {
+                    options.message = msg;
+                } else {
+                    options = msg;
+                }
+                dialogs.confirm(options).then((ok) => {
+                    this._dialogOpened = false;
+                    if (ok) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+                });
+            }
+        }); 
     }
     public open(...args: Array<any>) {
         // might have this open a WebView modal

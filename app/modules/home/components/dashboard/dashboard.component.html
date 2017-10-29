@@ -9,10 +9,10 @@
         <Button col="2" [text]="'fa-share-alt' | fonticon" class="fa gray"></Button>
     </GridLayout>
     <StackLayout>
-        <TextField hint="Username" [(ngModel)]="user.username"></TextField>
+        <TextField hint="Username" [(ngModel)]="user.email"></TextField>
         <TextField secure="true" hint="Password" [(ngModel)]="user.password"></TextField>
+        <!-- <Button text="Create" (tap)="create()"></Button> -->
         <Button text="Login" (tap)="login()"></Button>
-        
         
     </StackLayout>
 </StackLayout>

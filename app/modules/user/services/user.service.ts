@@ -63,8 +63,17 @@ export class UserService extends Cache {
         this._storageService.set(StorageKeys.REDIRECT_AFTER_LOGIN, { url });
     }
 
-    public login(credentials: { username: string; password: string; }) {
-        return this._systemUserApi.login(JSON.stringify(credentials));
+    public login(credentials: { email: string; password: string; }) {
+        return this._systemUserApi.login(credentials);
+    }
+
+    public create(user: any) {
+        return this._systemUserApi.create({
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            password: user.password
+        })
     }
 
     public persist(user: any) {

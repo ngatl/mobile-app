@@ -29,9 +29,15 @@ export class DashboardComponent implements AfterViewInit, OnInit, OnDestroy {
     this._store.dispatch(new UserActions.LoginAction(this.user));
   }
 
+  public create() {
+    this._store.dispatch(new UserActions.CreateAction(this.user));
+  }
+
   ngOnInit() {
     this.user = {
-      username: '',
+      firstName: '',
+      lastName: '',
+      email: '',
       password: ''
     };
   }

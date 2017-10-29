@@ -83,7 +83,7 @@ export namespace UserActions {
         /**
          * @param payload Optional token
          */
-        constructor(public payload?: { username: string; password: string; }) { }
+        constructor(public payload?: { email: string; password: string; }) { }
     }
 
     export class LoginSuccessAction implements Action {
@@ -186,7 +186,7 @@ export namespace UserActions {
         /**
          * @param payload user data
          */
-        constructor(public payload: SystemUser) { }
+        constructor(public payload: any) { }
     }
 
     export class CreateFinishAction implements Action {
